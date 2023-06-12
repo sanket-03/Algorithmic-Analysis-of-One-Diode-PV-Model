@@ -1,0 +1,17 @@
+*
+.subckt testcell1 1 2 3
+xu1 1 2 3 PVBasic rs=1 rsh=10k iph=1 io=1e-06 a_n=10
+.end
+*
+
+
+
+.subckt PVBasic v+ v- illu
+D1 N001 0 SolarDiode
+R1 N001 0 {Rsh}
+R2 v+ N001 {Rs}
+B1 0 N001 I=v(illu)/1000*Iph
+R3 illu 0 100Meg
+.model solardiode d(is=io n=a_n tref=temp)
+.end
+
